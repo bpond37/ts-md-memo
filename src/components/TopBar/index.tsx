@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import pen from '../../Icon/pen.svg';
-import trashcan from '../../Icon/trashcan.svg';
+import pen from '../../Icons/pen.svg';
+import trashcan from '../../Icons/trashcan.svg';
 
 const Bar = styled.div`
   display : flex;
   padding-left : 1rem;
   background : whitesmoke;
-  height : 40px;
+  height : 3rem;
   border-bottom : 0.3px solid;
   /* justify-content : center; */
   /* border-bottom-color :gray; */
@@ -36,7 +36,7 @@ const Button = styled.div`
 function TopBar (){
   return(
     <Bar>
-      <h5>MD Note</h5>
+      <h5>MD Note(가제)</h5>
       <Button>
         <img src={pen} width={13} height={'auto'} alt={'new memo'} />
       </Button>
