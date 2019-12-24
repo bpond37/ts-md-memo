@@ -1,6 +1,4 @@
-import React, {useState, ChangeEvent, useEffect} from 'react'
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.bubble.css";
+import React, { ChangeEvent, useEffect} from 'react'
 import styled from 'styled-components'
 import { getDateFormat } from '../../utils';
 import { now } from 'moment';
@@ -14,78 +12,55 @@ type InjectedProps = {
 }
 
 function Editor (props:InjectedProps){
-  const {registerMemo, setMemo, memo} = props[STORES.MEMO_STORE]
-  // const initialTime = getDate(now())
-  // const [title, setTitle] = useState('')
-  // const [text, setText] = useState({editorHtml:''})
-  const [createdTime, setCreatedTime] = useState(now())
+  const {setMemo, memo, id, setMemos, memos, selectedIndex} = props[STORES.MEMO_STORE]
+  const initialMemo = {id:id, title:'', created:now(), contents: ''};
   
-  //temporory id
-  let id = 1;
-
   useEffect(()=>{
-    console.log('useeffect')
-    handleChange('')
-    // setMemo({id:id, title:'', created:createdTime, contents: ''})
+    setMemo(initialMemo)
   },[])
 
-  // const initializeEditor = ()=>{
-  //   setText({editorHtml:''})
-  //   setTitle('')
-  //   setCreatedTime(now())
-  // }
-
-  const handleChange = (html:string) =>{
-    // setText({ editorHtml: html });
-    console.log("handlechange")
-    setMemo({...memo, contents:html})
-    setCreatedTime(now())
-  }
-
   const handleTitle = (e:ChangeEvent<HTMLInputElement>) =>{
-    // setTitle(e.target.value)
-    const tempTitle = e.target.value
-    console.log(tempTitle)
-    setMemo({...memo, title: tempTitle})
-    setCreatedTime(now())
 
+    setMemo({...memo, id:memo.id, title: e.target.value})
+    const tempMemos = memos;
+    memos.splice(selectedIndex,1,{...memo, title:e.target.value})
+    setMemos(tempMemos)
   }
-  // registerMemo({id:id++, created:createdTime, contents: text.editorHtml})
 
-  const modules = {
-    toolbar:[
-      [{header:'1'},{header:'2'}],
-      ['bold', 'italic', 'underline','strike'],
-      [{list:'ordered'}, {list:'bullet'}],
-      ['blockquote', 'code-block', 'link', 'image']
-    ],
+  const handleText = (e:ChangeEvent<HTMLTextAreaElement>)=>{
+    setMemo({...memo, id:memo.id, contents:e.target.value})
+    const tempMemos = memos;
+    tempMemos.splice(selectedIndex,1,{...memo, contents:e.target.value})
+    setMemos(tempMemos)
   }
 
   return(
-    <EditorDiv>
-      <EditorDiv className='createdDate'> {getDateFormat(createdTime)}</EditorDiv>
-      <EditorDiv className='inputTitle'> 
-      <input type='text' value={memo.title} onChange={e=>handleTitle(e)} placeholder='Title'
-       style={{border:'none', fontSize:'1.2rem' }}
-       >
-      </input>
-      </EditorDiv>
-      <QuillWrapper>
-       <ReactQuill 
-          theme='bubble'
-          onChange={handleChange}
+    <EditorBlock>
+      <EditorBlock className='createdDate'> 
+        {getDateFormat(memo.created)}
+      </EditorBlock>
+      <EditorBlock className='inputTitle'> 
+        <StyledInputTitle 
+          type='text' 
+          value={memo.title} 
+          onChange={e=>handleTitle(e)} 
+          placeholder='title'
+        />
+      </EditorBlock>
+      <EditorBlock className='inputText'>
+        <StyledTextarea
+          onChange={e=>handleText(e)}
           value={memo.contents}
-          modules={modules}
-          // placeholder='내용을 작성하세요'
-         />
-      </QuillWrapper>
-    </EditorDiv>
+          placeholder={'text'}
+        />
+      </EditorBlock>
+    </EditorBlock>
   )
 }
 
 export default inject(STORES.MEMO_STORE)(observer(Editor))
 
-const EditorDiv = styled.div`
+const EditorBlock = styled.div`
   flex:1;
   display: flex;
   flex-direction:column;
@@ -103,24 +78,40 @@ const EditorDiv = styled.div`
   &.inputTitle{
     /* flex: 1; */
     padding-left : 1rem;
+    padding-right : 1rem;
+    height:3rem;
     font-size: 1rem;
     height: 1rem;
     flex:0;
   }
-`
-
-const QuillWrapper = styled.div`
-    padding-top: 1rem;
-  .ql-editor{
-    flex:1;
-    /* height : calc(100vh - 5rem); */
-    padding : 0;
-    padding-left : 1rem;
-    min-height: 18em;
+  &.inputText{
+    padding : 1rem;
     font-size: 1rem;
-    line-height: 1.5;
-  }
-  .ql-editor.ql-blank::before{
-  left: 0px;
+    height: 1rem;
+
   }
 `
+  const StyledInputTitle = styled.input`
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding:0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  `
+
+  const StyledTextarea = styled.textarea`
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 0px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: calc(100% - 60px);
+    outline: none;
+    resize: none;
+  `

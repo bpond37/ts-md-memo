@@ -1,29 +1,42 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
-import TopBar from '../TopBar'
 
 const StyledDiv = styled.div`
   &.panes{
     height : calc(100vh - 3rem);
     display : flex;
-    background : $oc-gray-1;
   }
   &.pane{
     display:flex;
     flex:1;
+    &.preview{
+      @media(max-width:768px){
+      flex:0;
+      /* display:none; */
+      }
+    &.editor{
+      @media(max-width:768px){
+      flex:1;
+      }
+    }
+    }
   }
   &.seperator{
-    width:1rem;
+    @media(max-width:768px){
+    display:none;
+    }
     height:100%;
     position:absolute;
     transform : translate(-50%);
     cursor: col-resize;
+    border-left: 1px solid;
+    border-color: lightgray
   }
 `
 
 export default function EditorTemplate ({header, editor, preview}:any){
 
-  const [leftPercentage, setLeftPercentage] = useState(0.3)
+  const [leftPercentage, setLeftPercentage] = useState(0.2)
 
   const handleMouseMove = (e:any) =>{
     setLeftPercentage(e.clientX/window.innerWidth)
@@ -49,12 +62,12 @@ export default function EditorTemplate ({header, editor, preview}:any){
 
   return(
     <StyledDiv>
-      {<TopBar/>}
+      {header}
       <StyledDiv className='panes'>
-        <StyledDiv className='pane editor' style={leftStyle}>
+        <StyledDiv className='pane preview' style={leftStyle}>
           {preview}
         </StyledDiv>
-        <StyledDiv className='pane preview' style={rightStyle}>
+        <StyledDiv className='pane editor' style={rightStyle}>
           {editor}
         </StyledDiv>
         <StyledDiv 
