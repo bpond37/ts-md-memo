@@ -1,6 +1,6 @@
 import React,{ useEffect, ChangeEvent, MouseEvent } from 'react'
 import { inject, observer } from 'mobx-react';
-import { STORES } from '../constants'
+import { STORES, PAGE_PATHS } from '../constants'
 import styled from 'styled-components'
 import palette from '../styles/palette'
 import {Link} from 'react-router-dom'
@@ -25,7 +25,7 @@ function Login (props: InjectedProps & RouteComponentProps){
     e.stopPropagation();
     try {
       await authStore.login();
-      history.push('/');
+      history.push(PAGE_PATHS.EDITER);
     } catch (err) {
       alert(err.response.data.msg);
     }
@@ -61,7 +61,7 @@ function Login (props: InjectedProps & RouteComponentProps){
         <StyledButton onClick={handleLogin}>
           Login with Email
         </StyledButton>
-        <Link to='/register'>
+        <Link to={PAGE_PATHS.SIGNUP}>
           Sign Up
         </Link>
       </WhiteBox>

@@ -1,6 +1,6 @@
 import React,{ useState, ChangeEvent, MouseEvent } from 'react'
 import { inject, observer } from 'mobx-react';
-import { STORES } from '../constants'
+import { STORES, PAGE_PATHS } from '../constants'
 import styled from 'styled-components'
 import palette from '../styles/palette'
 import {Link} from 'react-router-dom'
@@ -40,7 +40,7 @@ function Register (props: InjectedProps & RouteComponentProps){
         email: email,
         password: password,
       });
-      history.push('/login');
+      history.push(PAGE_PATHS.SIGNIN);
       alert(result.data.msg);
     } catch (err) {
       alert(err.response.data.msg);
@@ -87,7 +87,7 @@ function Register (props: InjectedProps & RouteComponentProps){
           onChange={onChangeRePassword}
         ></StyledInput>
         <StyledButton onClick={handleRegister}>Continue with Email</StyledButton>
-        <Link to='/login'>Login</Link>
+        <Link to={PAGE_PATHS.SIGNIN}>Login</Link>
       </WhiteBox>
     </LoginForm>
     </>
