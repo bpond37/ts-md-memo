@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/axios": "^0.14.0",
     "@types/jest": "24.0.23",
+    "@types/jwt-decode": "^2.2.1",
     "@types/moment": "^2.13.0",
     "@types/node": "12.12.14",
     "@types/quill": "^2.0.3",
@@ -14,6 +16,8 @@
     "@types/sanitize-html": "^1.20.2",
     "@types/styled-components": "^4.4.0",
     "autobind-decorator": "^2.4.0",
+    "axios": "^0.19.1",
+    "jwt-decode": "^2.2.0",
     "mobx": "^5.15.0",
     "mobx-react": "^6.1.4",
     "moment": "^2.24.0",

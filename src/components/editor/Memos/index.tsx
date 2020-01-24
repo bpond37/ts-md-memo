@@ -1,30 +1,38 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import styled from 'styled-components'
 import { STORES } from '../../../constants';
 import MemoStore from '../../../stores/memo/MemoStores';
 import {inject, observer} from 'mobx-react'
 import Memo from './Memo'
+import {ISOStringToJsDate} from '../../utils'
 
 type InjectedProps = {
   [STORES.MEMO_STORE] : MemoStore
 }
 
 function Memos (props:InjectedProps){
+
+  const {memos, getMemo, selectedId, getMemoList} = props[STORES.MEMO_STORE]
   
-  const {memos, getMemo, setSelectedId,selectedId, setIndex} = props[STORES.MEMO_STORE]
+  useEffect(()=>{
+    console.log("useEffect...")
+    getMemoList()
+
+  },[])
 
   const selectMemo = (id:number) => {
     getMemo(id)
-    setSelectedId(id)
-    setIndex()
+    // setIndex()
+    
   }
 
   return(
     <MemosBlock>
-      {memos.slice(0).sort((a,b) => b.created - a.created).map((v)=>
+      {memos.slice(0).sort((a,b) => ISOStringToJsDate(b.updatedAt) - ISOStringToJsDate(a.updatedAt)).map((v)=>
         <Memo 
-          key={v.created}
-          created={v.created}
+          key={v.id}
+          createdAt={v.createdAt}
+          updatedAt={v.updatedAt}
           id={v.id}
           contents={v.contents}
           title={v.title}

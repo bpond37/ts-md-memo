@@ -34,7 +34,7 @@ const StyledDiv = styled.div`
   }
 `
 
-export default function EditorTemplate ({header, editor, preview}:any){
+export default function EditorTemplate ({topBar, editor, preview}:any){
 
   const [leftPercentage, setLeftPercentage] = useState(0.2)
 
@@ -62,7 +62,7 @@ export default function EditorTemplate ({header, editor, preview}:any){
 
   return(
     <StyledDiv>
-      {header}
+      {topBar}
       <StyledDiv className='panes'>
         <StyledDiv className='pane preview' style={leftStyle}>
           {preview}

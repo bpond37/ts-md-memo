@@ -29,3 +29,18 @@ export const removeHtml = (html:string) =>{
     })
     return filtered.slice(0,10)
   }
+
+export const removeHtmlAndShorten = (body:string) =>{
+  const filtered = sanitizeHtml(body, {
+    allowedTags:[],
+  })
+  return filtered.length < 200? filtered : `${filtered.slice(0,200)}...`;
+}
+
+export const ISOStringToJsDate = (t:string) =>{
+  const time = new Date(t)
+  return time.getTime()
+}
+export const jsDateToISOString = (t:number) =>{
+  return moment(t).toISOString()
+}

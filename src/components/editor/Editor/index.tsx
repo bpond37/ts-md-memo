@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect} from 'react'
 import styled from 'styled-components'
-import { getDateFormat } from '../../utils';
-import { now } from 'moment';
+import { getDateFormat,ISOStringToJsDate, jsDateToISOString } from '../../utils';
+import moment, {now} from 'moment';
 import 'moment/locale/ko';
 import { STORES } from '../../../constants';
 import MemoStore from '../../../stores/memo/MemoStores';
@@ -12,45 +12,59 @@ type InjectedProps = {
 }
 
 function Editor (props:InjectedProps){
-  const {setMemo, memo, id, setMemos, memos, selectedIndex} = props[STORES.MEMO_STORE]
-  const initialMemo = {id:id, title:'', created:now(), contents: ''};
   
+  const {setMemo, memo, updateMemo, syncTitle, syncContents} = props[STORES.MEMO_STORE]
+  const initialMemo = {id:-1, title:'', createdAt:moment(now()).toISOString() , updatedAt:moment(now()).toISOString(), contents: ''};
+
   useEffect(()=>{
     setMemo(initialMemo)
   },[])
 
   const handleTitle = (e:ChangeEvent<HTMLInputElement>) =>{
-
-    setMemo({...memo, id:memo.id, title: e.target.value})
-    const tempMemos = memos;
-    memos.splice(selectedIndex,1,{...memo, title:e.target.value})
-    setMemos(tempMemos)
+    const tempTitle = e.target.value
+    setMemo({...memo, updatedAt:jsDateToISOString(now()), id:memo.id, title:tempTitle})
+    updateMemo()
+    syncTitle(tempTitle)
   }
 
-  const handleText = (e:ChangeEvent<HTMLTextAreaElement>)=>{
-    setMemo({...memo, id:memo.id, contents:e.target.value})
-    const tempMemos = memos;
-    tempMemos.splice(selectedIndex,1,{...memo, contents:e.target.value})
-    setMemos(tempMemos)
+  const handleContents = (e:ChangeEvent<HTMLTextAreaElement>) =>{
+    const tempContents = e.target.value
+    setMemo({...memo,id:memo.id, updatedAt:jsDateToISOString(now()), contents:tempContents})
+    updateMemo()
+    syncContents(tempContents)
   }
+
+  // const handleTitle = (e:ChangeEvent<HTMLInputElement>) =>{
+  //   setMemo({...memo, id:memo.id, title: e.target.value})
+  //   const tempMemos = memos;
+  //   memos.splice(selectedIndex,1,{...memo, title:e.target.value})
+  //   setMemos(tempMemos)
+  // }
+
+  // const handleText = (e:ChangeEvent<HTMLTextAreaElement>)=>{
+  //   setMemo({...memo, id:memo.id, contents:e.target.value})
+  //   const tempMemos = memos;
+  //   tempMemos.splice(selectedIndex,1,{...memo, contents:e.target.value})
+  //   setMemos(tempMemos)
+  // }
 
   return(
     <EditorBlock>
       <EditorBlock className='createdDate'> 
-        {getDateFormat(memo.created)}
+        {getDateFormat(ISOStringToJsDate(memo.updatedAt))}
       </EditorBlock>
       <EditorBlock className='inputTitle'> 
         <StyledInputTitle 
           type='text' 
           value={memo.title} 
-          onChange={e=>handleTitle(e)} 
+          onChange={handleTitle} 
           placeholder='title'
         />
       </EditorBlock>
       <EditorBlock className='inputText'>
         <StyledTextarea
-          onChange={e=>handleText(e)}
           value={memo.contents}
+          onChange={handleContents}
           placeholder={'text'}
         />
       </EditorBlock>

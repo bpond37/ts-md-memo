@@ -4,16 +4,17 @@ import {shortenLine, removeHtml} from '../../../utils';
 import moment from 'moment';
 
 type MemoProps = {
-  created: number;
   id: number;
   title :string;
   contents: string;
+  createdAt: string;
+  updatedAt: string;
   selectMemo: (id:number)=>void;
   selected : boolean;
 }
 
 function Memo (props:MemoProps) {
-  const {created, id, title, contents, selectMemo, selected} = props
+  const {updatedAt, id, title, contents, selectMemo, selected} = props
   return(
     <MemoItem defaultChecked={selected} onClick={()=>selectMemo(id)}>
       <Item className='title' >
@@ -25,7 +26,7 @@ function Memo (props:MemoProps) {
         {shortenLine(removeHtml(contents))}
       </Item>
       <Item className='createdTime'>
-        {moment(created).locale('kr').fromNow()}
+        {moment(updatedAt).locale('kr').fromNow()}
       </Item>
     </MemoItem>
   )
