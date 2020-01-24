@@ -14,7 +14,7 @@ type InjectedProps = {
 function Editor (props:InjectedProps){
   
   const {setMemo, memo, updateMemo, syncTitle, syncContents} = props[STORES.MEMO_STORE]
-  const initialMemo = {id:-1, title:'', createdAt:moment(now()).toISOString() , updatedAt:moment(now()).toISOString(), contents: ''};
+  const initialMemo = {id:0, title:'', createdAt:moment(now()).toISOString() , updatedAt:moment(now()).toISOString(), contents: ''};
 
   useEffect(()=>{
     setMemo(initialMemo)
@@ -23,31 +23,17 @@ function Editor (props:InjectedProps){
   const handleTitle = (e:ChangeEvent<HTMLInputElement>) =>{
     const tempTitle = e.target.value
     setMemo({...memo, updatedAt:jsDateToISOString(now()), id:memo.id, title:tempTitle})
-    updateMemo()
     syncTitle(tempTitle)
+    updateMemo()
   }
 
   const handleContents = (e:ChangeEvent<HTMLTextAreaElement>) =>{
     const tempContents = e.target.value
     setMemo({...memo,id:memo.id, updatedAt:jsDateToISOString(now()), contents:tempContents})
-    updateMemo()
     syncContents(tempContents)
+    updateMemo()
   }
-
-  // const handleTitle = (e:ChangeEvent<HTMLInputElement>) =>{
-  //   setMemo({...memo, id:memo.id, title: e.target.value})
-  //   const tempMemos = memos;
-  //   memos.splice(selectedIndex,1,{...memo, title:e.target.value})
-  //   setMemos(tempMemos)
-  // }
-
-  // const handleText = (e:ChangeEvent<HTMLTextAreaElement>)=>{
-  //   setMemo({...memo, id:memo.id, contents:e.target.value})
-  //   const tempMemos = memos;
-  //   tempMemos.splice(selectedIndex,1,{...memo, contents:e.target.value})
-  //   setMemos(tempMemos)
-  // }
-
+  
   return(
     <EditorBlock>
       <EditorBlock className='createdDate'> 

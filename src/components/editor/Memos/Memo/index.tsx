@@ -20,7 +20,7 @@ function Memo (props:MemoProps) {
       <Item className='title' >
 
         {title===""?
-        "새로운 메모":shortenLine(title)}
+        "새로운 메모":shortenLine(removeHtml(title))}
       </Item>
       <Item className='text'>
         {shortenLine(removeHtml(contents))}

@@ -6,6 +6,7 @@ import palette from '../styles/palette'
 import {Link} from 'react-router-dom'
 import AuthStore from '../stores/auth/AuthStore'
 import { RouteComponentProps } from 'react-router'
+import {Helmet} from 'react-helmet'
 
 interface InjectedProps {
   authStore : AuthStore;
@@ -60,6 +61,10 @@ function Register (props: InjectedProps & RouteComponentProps){
   }
 
   return(
+    <>
+    <Helmet>
+      <title>Sign Up</title>
+    </Helmet>
     <LoginForm>
       <WhiteBox>
         <h1>Sign Up</h1>
@@ -85,6 +90,7 @@ function Register (props: InjectedProps & RouteComponentProps){
         <Link to='/login'>Login</Link>
       </WhiteBox>
     </LoginForm>
+    </>
   )
 }
 

@@ -17,7 +17,6 @@ class AuthStore{
   private authService = new AuthService();
 
   constructor() {
-    console.log("authStore constructor")
     if (this.token) {
       this.auth = jwtDecode(this.token) as Auth;
     }
@@ -41,7 +40,6 @@ class AuthStore{
       password: this.password
     };
     const response = await this.authService.login(body);
-    console.log(response.data.data.token)
     this.setToken(response.data.data.token);
   }
 
@@ -57,6 +55,7 @@ class AuthStore{
     window.sessionStorage.removeItem('jwt');
     this.token = null;
     this.auth = undefined;
+    // 향후 localStorage or cookie 형태로 바꾸기..
     // const response = await this.authService.logout();
     // console.log(response)
   }

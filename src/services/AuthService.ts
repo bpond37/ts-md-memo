@@ -41,9 +41,9 @@ class AuthService {
     return axios.get(`${API_HOST}/auth/check`)
   }
 
-  async logout():Promise<ApiResponse<any>>{
-    return axios.post(`${API_HOST}/auth/logout`)
-  }
+  // async logout():Promise<ApiResponse<any>>{
+  //   return axios.post(`${API_HOST}/auth/logout`)
+  // }
 }
 
 export default AuthService;

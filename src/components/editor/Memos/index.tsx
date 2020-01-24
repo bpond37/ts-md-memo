@@ -12,7 +12,7 @@ type InjectedProps = {
 
 function Memos (props:InjectedProps){
 
-  const {memos, getMemo, selectedId, getMemoList} = props[STORES.MEMO_STORE]
+  const {memos, getMemoById, selectedId, getMemoList} = props[STORES.MEMO_STORE]
   
   useEffect(()=>{
     console.log("useEffect...")
@@ -21,7 +21,7 @@ function Memos (props:InjectedProps){
   },[])
 
   const selectMemo = (id:number) => {
-    getMemo(id)
+    getMemoById(id)
     // setIndex()
     
   }

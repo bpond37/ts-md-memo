@@ -11,17 +11,27 @@ import {
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import {Helmet} from 'react-helmet'
 
 function App () {
   return (
+    <>
+    <Helmet>
+      <title>이름을뭘로하지..</title>
+    </Helmet>
     <Router>
       <Switch>
         <PrivateRoute redirectTo='/login' exact path="/" component ={EditorPage} />
-        <Route exact path="/login" component ={Login} />
+        {/* <Helmet>
+          <title>login</title>
+        </Helmet> */}
+        <Route exact path="/login" component ={Login} >
+          
+        </Route>
         <Route exact path="/register" component ={Register} />
       </Switch>
     </Router>
-
+  </>
   );
 }
 

@@ -32,17 +32,13 @@ class memoService {
   constructor(private authStore: AuthStore) {
   }
 
-  async getList(): Promise<ApiResponse<MemoDTO[]>> {
+  async getMemoList(): Promise<ApiResponse<MemoDTO[]>> {
     if (this.authStore.auth == null) {
       throw new Error('need to login!');
     }
    const userId = this.authStore.auth.id
     return axios.get(`${API_HOST}/memos/${userId}`);
   }
-
-  // getById(id: string): Promise<ApiResponse<MemoDTO[]>>{
-  //   return axios.get(`${API_HOST}/memos/${id}`)
-  // }
 
   async registerMemo(body: MemoRegistrationDTO):Promise<ApiResponse<MemoDTO>>{
     if (this.authStore.auth == null) {
@@ -63,14 +59,7 @@ class memoService {
     if (this.authStore.auth == null) {
       throw new Error('need to login!');
     }
-    console.log(body)
     const req = {title:body.title, contents:body.contents}
-    // const formData = new FormData();
-    // formData.append('id', String(body.id))
-    // formData.append('userId', String(this.authStore.auth.id));
-    // formData.append('title', body.title);
-    // formData.append('contents', body.contents);
-
 
     return axios.patch<MemoUpdateDTO, ApiResponse<MemoDTO>>(`${API_HOST}/memos/${body.id}`,req)
   }
@@ -78,8 +67,6 @@ class memoService {
   async deleteMemo(id:number):Promise<ApiResponse<MemoDTO>> {
     return axios.delete(`${API_HOST}/memos/${id}`)
   }
-
-
 }
 
 export default memoService;

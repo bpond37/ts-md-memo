@@ -36,8 +36,8 @@ function TopBar (props : InjectedProps & RouteComponentProps){
 
   return(
     <TopBarBlock>
-      <TopBarBlock>
-        <h4>Ulendo</h4>
+      <TopBarBlock className='header'>
+        <h3>Ulendo</h3>
         <Button onClick={onClickNew}>
           <img src={pen} width={13} height={'auto'} alt={'new memo'} />
         </Button>
@@ -48,7 +48,9 @@ function TopBar (props : InjectedProps & RouteComponentProps){
       </TopBarBlock>
         {/* <h1>{auth}</h1> */}
       <Logout onClick={handleLogout}>
-        <h4>logout</h4>
+        <h4>
+          logout
+        </h4>
       </Logout>
 
     </TopBarBlock>
@@ -72,6 +74,10 @@ const TopBarBlock = styled.div`
   align-items: center;
   font-family:Arial, Helvetica, sans-serif;
   justify-content:space-between;
+
+  &.header{
+    padding-left: 0;
+  }
   `
 
 const Button = styled.div`
