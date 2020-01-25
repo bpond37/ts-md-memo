@@ -4,7 +4,7 @@ export enum STORES {
 }
 
 export enum PAGE_PATHS {
-  SIGNIN = '/register',
-  SIGNUP = '/login',
+  SIGNIN = '/login',
+  SIGNUP = '/register',
   EDITER = '/'
 }
