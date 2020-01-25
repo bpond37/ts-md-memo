@@ -24,7 +24,7 @@ export type AuthResponseDto = {
   password: string;
 }
 
-const API_HOST = process.env.API_HOST || 'http://localhost:4000/api';
+const API_HOST = process.env.baseURL || 'http://localhost:4000/api';
 
 // const client = axios.create({withCredentials: true});
 
