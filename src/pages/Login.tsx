@@ -27,7 +27,7 @@ function Login (props: InjectedProps & RouteComponentProps){
       await authStore.login();
       history.push(PAGE_PATHS.EDITER);
     } catch (err) {
-      alert(err.response.data.msg);
+      alert(err);
     }
   };
   

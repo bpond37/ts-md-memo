@@ -44,7 +44,7 @@ const MemoItem = styled.div`
   border-bottom-color :lightgray;
   height: 5rem;
   background:${props => props.defaultChecked? 'lightgray' :'white'};
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Nanum Myeongjo', serif; 
   &.title{
     font-size: 2.5rem;
     font-weight: 300;

@@ -17,14 +17,11 @@ function App () {
   return (
     <>
     <Helmet>
-      <title>이름을뭘로하지..</title>
+      <title>Ulendo</title>
     </Helmet>
     <Router>
       <Switch>
         <PrivateRoute redirectTo='/login' exact path="/" component ={EditorPage} />
-        {/* <Helmet>
-          <title>login</title>
-        </Helmet> */}
         <Route exact path="/login" component ={Login} >
           
         </Route>

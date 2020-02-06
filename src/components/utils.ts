@@ -20,7 +20,7 @@ export const shortenLine = (text:string) =>{
   if (text===undefined){
     text=''
   }
-  return text.slice(0,10)
+  return text.slice(0,15)
 }
 
 export const removeHtml = (html:string) =>{

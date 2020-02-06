@@ -37,7 +37,7 @@ function TopBar (props : InjectedProps & RouteComponentProps){
   return(
     <TopBarBlock>
       <TopBarBlock className='header'>
-        <h3>Ulendo</h3>
+        <h3>The Note</h3>
         <Button onClick={onClickNew}>
           <img src={pen} width={13} height={'auto'} alt={'new memo'} />
         </Button>
