@@ -4,9 +4,7 @@
 Ulendo는 간단한 메모로 생각을 정리할 수 있는 메모 앱입니다. 서버를 통해 모바일과 웹에서 메모가 실시간으로 동기화되며, 현재 초기 UI와 백엔드가 제작되어 있고, 추후 디자이너와 협업하여 사용자 경험 및 프론트엔드 기능을 개선할 예정입니다.
 
 ## 다른 깃 저장소 링크
- * [메모 서버 REST API](https://github.com/Sasquatchy/EchoAPI-server)
- 
- * [The admin-server of our Echo service with Spring.](https://github.com/Sasquatchy/Project-Echo-server)
+ * [메모 서버 REST API](https://github.com/bpond37/ts-memo-server)
  
 ## 웹 애플리케이션 링크
   https://rooftify.herokuapp.com/
