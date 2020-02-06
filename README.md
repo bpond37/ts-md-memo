@@ -7,7 +7,7 @@ Ulendo는 간단한 메모로 생각을 정리할 수 있는 메모 앱입니다
  * [메모 서버 REST API](https://github.com/bpond37/ts-memo-server)
  
 ## 웹 애플리케이션 링크
-  https://rooftify.herokuapp.com/
+  https://ulendo.herokuapp.com/
 
 ## 개발 환경
  * 개발인원 : 1
