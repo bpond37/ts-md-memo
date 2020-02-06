@@ -1,44 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ULENDO - Simple Memo Web App
+> 실시간 동기화 메모 앱
+ 
+Ulendo는 간단한 메모로 생각을 정리할 수 있는 메모 앱입니다. 서버를 통해 모바일과 웹에서 메모가 실시간으로 동기화되며, 현재 초기 UI와 백엔드가 제작되어 있고, 추후 디자이너와 협업하여 사용자 경험 및 프론트엔드 기능을 개선할 예정입니다.
 
-## Available Scripts
+## 다른 깃 저장소 링크
+ * [메모 서버 REST API](https://github.com/Sasquatchy/EchoAPI-server)
+ 
+ * [The admin-server of our Echo service with Spring.](https://github.com/Sasquatchy/Project-Echo-server)
+ 
+## 웹 애플리케이션 링크
+  https://rooftify.herokuapp.com/
 
-In the project directory, you can run:
+## 개발 환경
+ * 개발인원 : 1
+ * 기간 : 2019.12 – 진행 중
+ * 스택 :
+    * 프론트 엔드 : Typescript, React, MobX
+    * 백 엔드 : NodeJs, Express, Sequelize, Mysql, Heroku
 
-### `yarn start`
+ 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+ 
+ 
+ 
+ 
