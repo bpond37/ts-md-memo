@@ -9,6 +9,10 @@ Ulendo는 간단한 메모로 생각을 정리할 수 있는 메모 앱입니다
 ## 웹 애플리케이션 링크
   https://ulendo.herokuapp.com/
 
+## 앱 화면
+
+<img src ="./ulendo-screen.png" width="60%">
+
 ## 개발 환경
  * 개발인원 : 1
  * 기간 : 2019.12 – 진행 중
